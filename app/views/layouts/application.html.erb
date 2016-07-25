@@ -14,7 +14,7 @@
 		  <nav>
             <ul class="nav pull-right">
               <% if signed_in? %>
-			  <% admin=User.find(1).id %>
+			  <% admin=1 %>
 			  <% if current_user.id==admin %>
                 <li><%= link_to "使用者", users_path %></li>
 				<li><%= link_to "文章", posts_path %></li>
