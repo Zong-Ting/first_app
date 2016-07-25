@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :posts
   resources :users
   resource :session, only: [ :new, :create, :destroy]
   get '/sandbox', to: 'root#sandbox' if Rails.env.development?

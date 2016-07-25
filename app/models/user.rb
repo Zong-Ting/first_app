@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :posts
+  
   before_save {self.email=email.downcase}
   before_save { self.session_token ||= Digest::SHA1.hexdigest(SecureRandom.urlsafe_base64.to_s) }
   has_secure_password
