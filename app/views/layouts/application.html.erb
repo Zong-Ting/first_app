@@ -13,8 +13,9 @@
           <%= link_to "CZTWeb", root_path, id: "logo" %>
 		  <nav>
             <ul class="nav pull-right">
-			<% admin=User.find(1).id %>
-              <% if signed_in? && current_user.id==admin %>
+              <% if signed_in? %>
+			  <% admin=User.find(1).id %>
+			  <% if current_user.id==admin %>
                 <li><%= link_to "使用者", users_path %></li>
 				<li><%= link_to "文章", posts_path %></li>
                 <li id="fat-menu" class="dropdown">
@@ -30,7 +31,7 @@
                     </li>
                   </ul>
                 </li>
-			  <% elsif signed_in? && current_user.id!=admin %>
+			  <% else %>
 				<li><%= link_to "文章", posts_path %></li>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -45,6 +46,7 @@
                     </li>
                   </ul>
                 </li>
+				<% end %>
               <% else %>
                 <li><%= link_to "登入", new_session_path %></li>
               <% end %>
