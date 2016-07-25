@@ -13,31 +13,47 @@
           <%= link_to "CZTWeb", root_path, id: "logo" %>
 		  <nav>
             <ul class="nav pull-right">
-			  <li><%= link_to "Home", root_path %></li>
-              <% if signed_in? %>
-                <li><%= link_to "Users", users_path %></li>
+			<% admin=User.find(1).id %>
+              <% if signed_in? && current_user.id==admin %>
+                <li><%= link_to "使用者", users_path %></li>
+				<li><%= link_to "文章", posts_path %></li>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <%= current_user.name %> <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><%= link_to "Profile", current_user %></li>
-                    <li><%= link_to "Settings", "#" %></li>
+                    <li><%= link_to "個人頁面", current_user %></li>
+                    <li><%= link_to "設定", "#" %></li>
                     <li class="divider"></li>
                     <li>
-                      <%= link_to "Sign out", session_path, method: "delete" %>
+                      <%= link_to "登出", session_path, method: "delete" %>
+                    </li>
+                  </ul>
+                </li>
+			  <% elsif signed_in? && current_user.id!=admin %>
+				<li><%= link_to "文章", posts_path %></li>
+                <li id="fat-menu" class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <%= current_user.name %> <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "個人頁面", current_user %></li>
+                    <li><%= link_to "設定", "#" %></li>
+                    <li class="divider"></li>
+                    <li>
+                      <%= link_to "登出", session_path, method: "delete" %>
                     </li>
                   </ul>
                 </li>
               <% else %>
-                <li><%= link_to "Sign in", new_session_path %></li>
+                <li><%= link_to "登入", new_session_path %></li>
               <% end %>
             </ul>
           </nav>
         </div>
     </div>
 </header>
-<div class="container"> 
+<div class="container"> <br><br><br><br>
 <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>

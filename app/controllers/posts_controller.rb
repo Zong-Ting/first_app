@@ -1,4 +1,16 @@
 class PostsController < ApplicationController
+before_action :authenticate_user, only: [:create, :index, :destroy]
+  def destroy
+    @post = Post.find(params[:id]) #找文章ID
+	if current_user?(@post.user) #確認本人文章
+	  @post.destroy #刪除
+	  flash[:success] = "刪除成功"
+	  redirect_to posts_path
+	else
+	  flash[:error] = "刪除失敗"
+	  redirect_to posts_path
+	end
+  end
   def index
     @posts = Post.all
 	@post = current_user.posts.build

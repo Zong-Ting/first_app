@@ -1,4 +1,5 @@
-<h1>Sign-In</h1>
+<br><br><br>
+<h1>會員登入</h1>
 <%= form_for :session, url: session_path do |f| %>
     <%= f.label :email %><br>
     <%= f.text_field :email %><br>
@@ -7,6 +8,6 @@
     <%= f.password_field :password %><br><br>
 
     <div class="actions">
-    <%= f.submit "Sign-in" %>
+    <%= f.submit "登入" %>
   </div>
 <% end %>

@@ -1,4 +1,11 @@
 module SessionsHelper
+  def authenticate_user
+    unless signed_in? #如果沒登入
+	flash[:notice] = "請登入"
+	 redirect_to new_session_path
+	 end
+  end
+  
   def sign_in(user)
     session[:session_token] = user.session_token
   end
