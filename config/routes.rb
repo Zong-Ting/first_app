@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :users do
+    get 'followers', on: :member
+    post 'follow', on: :member
+	delete 'unfollow', on: :member
+  end
+
   resources :posts
   resources :users
   resource :session, only: [ :new, :create, :destroy]
