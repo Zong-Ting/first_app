@@ -1,26 +1,29 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destro, :follow, :unfollow, :followers ]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :unfollow, :followers, :followings ]
   before_action :authenticate_user, except: [ :new, :create ]
   
   
    def followers
-     @users = @user.followers
+     @users = @user.followers.page(params[:page])
   end
   
+  def followings
+     @users = @user.followed_users.page(params[:page])
+  end
+
+  
    def show
-     @posts = @user.posts
+     @posts = @user.posts.page(params[:page])
   end
   
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
   # GET /users/1
   # GET /users/1.json
-  def show
-  end
 
   # GET /users/new
   def new
@@ -36,7 +39,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      sign_in @user
+      sign_in(@user)
       flash[:success] = "Welcome, #{@user.name}!"
       redirect_to @user
     else

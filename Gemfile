@@ -57,3 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sprockets', '~>3.6.3'
+
+gem 'faker', group: [ :development, :test ]
+
+gem 'will_paginate'

@@ -1,7 +1,7 @@
 class RootController < ApplicationController
   def home
     def sandbox
-	  #session[:our_data] = 1234
     end
+	redirect_to posts_path if signed_in?
   end
 end
