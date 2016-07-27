@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h1>Users List</h1>
+<%= form_tag users_path, method: :get do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag "Search 使用者" %>
+ <% end %>
 <table>
   <thead>
     <tr>

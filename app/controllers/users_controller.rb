@@ -19,7 +19,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all.page(params[:page])
+    if params[:search].blank?
+      @users = User.all.page(params[:page])
+	else
+	  @users=User.search do
+	    fulltext params[:page]
+		paginate(page: params[:page])
+		oder_by :creared_at, :desc
   end
 
   # GET /users/1

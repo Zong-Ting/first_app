@@ -12,9 +12,17 @@ before_action :authenticate_user, only: [:create, :index, :destroy]
 	end
   end
   def index
-    @posts = Post.from_followed_users(current_user).page(params[:page]).order('created_at DESC')
-	@post = current_user.posts.build
+    if params[:search].blank?
+      @posts = Post.from_followed_users(current_user).page(params[:page]).order('created_at DESC')
+	else
+	  @posts = Post.search do
+	    fulltext params[:search]
+		paginate(page: params[:page])
+	  end.results
+	end
+	  @post = current_user.posts.build
   end
+  
   def new
     @post = current_user.posts.build
   end
