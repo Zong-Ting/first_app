@@ -1,6 +1,8 @@
 == README
 git clone https://github.com/Zong-Ting/first_ROR
+
 bundle install
+
 rake db:migrate db:populate
 
 rake sunspot:solr:run
