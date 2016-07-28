@@ -1,4 +1,12 @@
-    <li class="user">
+<li class="user" user_id="<%= user.id %>">
     <%= link_to gravatar_for(user), user %>
 	<%= link_to user.name, user %>
-   </li>
+	 <small><%= pluralize user.posts.count, "posts" %></samll><br>
+	 <% unless current_user?(user) %>
+	   <% if current_user.following?(user) %>
+	     <%= link_to "Unfollow", unfollow_user_path(user.id), class: "btn btn-large btn-primary", method: :delete %>
+	   <% else %>
+	     <%= button_to "Follow", follow_user_path(user.id), class: "btn btn-large btn-primary" %>
+	   <% end %>
+	 <% end %>
+</li>

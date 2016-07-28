@@ -26,6 +26,8 @@ class UsersController < ApplicationController
 	    fulltext params[:page]
 		paginate(page: params[:page])
 		oder_by :creared_at, :desc
+		end.results
+	end
   end
 
   # GET /users/1
@@ -68,28 +70,22 @@ class UsersController < ApplicationController
   end
   
   def follow
-    if current_user?(@user) #檢查用戶是本人嗎
-	  flash[:error] = "不能追蹤自己"
-	elsif current_user.following?(@user) #關注過了?
-	  flash[:error] = "關注過了"
-	else
-	  unless current_user.follow(@user).nil?
-	    flash[:success] = "關注中"
-	  else
-	    flash[:error] = "出現問題 無法關注#{@user.name}"
-	  end
-	end
-	redirect_to @user
+    if current_user.follow(@user)
+      flash[:success] = "You are following #{@user.name}"
+    else
+      flash[:error] = "Something went wrong.  You cannot follow #{@user.name}"
+    end
+    redirect_to :back
   end
   
  
    def unfollow
     if current_user.unfollow(@user)
-      flash[:success] = "取消關注 #{@user.name}"
+      flash[:success] = "You are no longer following #{@user.name}"
     else
-      flash[:error] = "錯誤~ #{@user.name}"
+      flash[:error] = "Something went wrong.  You cannot unfollow #{@user.name}"
     end
-    redirect_to @user
+    redirect_to :back
   end
 
   # DELETE /users/1

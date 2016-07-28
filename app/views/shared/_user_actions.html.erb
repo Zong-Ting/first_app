@@ -1,7 +1,7 @@
 <% unless current_user?(@user) %>
     <% if current_user.following?(@user) %>
-	 <%= link_to "取消關注", unfollow_user_path(@user), class: "btn btn-large btn-primary", method: :delete %>
+	 <%= link_to "Unfollow", unfollow_user_path(@user), class: "btn btn-large btn-primary", method: :delete %>
 	<% else %>
-	 <%= button_to "關注", follow_user_path(@user), class: "btn btn-large btn-primary" %>
+	 <%= button_to "Follow", follow_user_path(@user), class: "btn btn-large btn-primary" %>
 	<% end %>
    <% end %>
