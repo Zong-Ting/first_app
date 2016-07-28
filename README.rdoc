@@ -5,6 +5,8 @@ bundle install
 
 rake db:migrate db:populate
 
+rake sunspot:reindex
+
 rake sunspot:solr:run
 
 
