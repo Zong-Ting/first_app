@@ -1,4 +1,15 @@
 == README
+git clone https://github.com/Zong-Ting/first_ROR
+
+bundle install
+
+rake db:migrate db:populate
+
+rake sunspot:reindex
+
+rake sunspot:solr:run
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
