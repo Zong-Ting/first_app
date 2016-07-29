@@ -2,11 +2,11 @@ namespace :db do
   desc "Generate users"
   task populate: :environment do
     # Generate fixed users Yitao and Ed
-  	yitao = User.create(name: "Yitao", email: "yitao@example.com", password: "password", password_confirmation: "password")
-  	ed = User.create(name: "Ed", email: "ed@example.com", password: "password", password_confirmation: "password")
+  	czt = User.create(name: "CZT", email: "CZT@example.com", password: "password", password_confirmation: "password")
+  	yoga = User.create(name: "yoga", email: "yoga@example.com", password: "password", password_confirmation: "password")
 
     # Generate 98 additional random users
-  	users = [ yitao, ed ]
+  	users = [ czt, yoga ]
     users += 98.times.collect do |i|
       name = "user_#{i}"
       email = "#{name}@example.com"

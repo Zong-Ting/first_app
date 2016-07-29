@@ -66,3 +66,14 @@ gem 'sunspot_rails'
 gem 'sunspot_solr', group: :development
 
 gem 'progress_bar'
+
+gem 'omniauth-facebook'
+
+gem 'rspec-rails', group: [ :development, :test]
+gem 'capybara', group: :test
+gem 'selenium-webdriver', group: :test
+gem 'factory_girl_rails', '~>4.0', group: :test
+gem 'launchy'
+gem 'database_cleaner', '1.0.0.RC1'
+
+gem "lol_dba"
