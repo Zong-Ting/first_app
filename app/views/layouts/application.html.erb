@@ -15,7 +15,9 @@
             <ul class="nav pull-right display:inline">
 			<li><%= link_to "首頁", root_path %>
               <% if signed_in? %>
+			    <% if admin? %>
                 <%= link_to "使用者", users_path %>
+				<% end %>
 				<%= link_to "文章", posts_path %>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
